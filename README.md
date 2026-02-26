@@ -2,7 +2,7 @@
 
 In one week you can learn more than many engineers who haven’t upskilled. This path is your starting point. Work through the theory and practice exercises to learn the mindset and apply it from day one.
 
-If you want to learn more, I'm writing a book on this topic about [AI-Native Engineering](https://alfonsograziano.it/book)
+If you want to learn more, I'm writing a book about [AI-Native Engineering](https://alfonsograziano.it/book)
 ---
 
 ## Table of Contents
