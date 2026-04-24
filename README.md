@@ -2246,7 +2246,7 @@ You finished the seven days. The mindset shift starts here, not ends here. A few
 
 I write a weekly essay on AI-Native Engineering on Substack: practical patterns, things I got wrong, and ideas that haven't made it into the roadmap yet. If you liked this path, the newsletter is where I go deeper.
 
-Subscribe at [alfonsograziano.substack.com](https://alfonsograziano.substack.com).
+Subscribe at [ainativeengineering.substack.com](https://ainativeengineering.substack.com).
 
 ### 2. The book
 
