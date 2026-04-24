@@ -2237,3 +2237,29 @@ This is an open-ended exercise, and that is intentional.
 The goal isn't a perfect automation. It's to build the habit of looking at your own workflow with an engineer's eye and asking where AI fits, because that habit compounds over time.
 
 ---
+
+## What's next after Day 7?
+
+You finished the seven days. The mindset shift starts here, not ends here. A few genuinely useful next steps if you want to keep going:
+
+### 1. Get the weekly deep dives
+
+I write a weekly essay on AI-Native Engineering on Substack: practical patterns, things I got wrong, and ideas that haven't made it into the roadmap yet. If you liked this path, the newsletter is where I go deeper.
+
+Subscribe at [alfonsograziano.substack.com](https://alfonsograziano.substack.com).
+
+### 2. The book
+
+I'm writing an O'Reilly book called *AI-Native Software Engineering* that covers all of this in depth: the mindset, the workflows, the failure modes, the team practices, and the parts that need more than a week to internalize.
+
+Details and early updates: [alfonsograziano.it/book](https://alfonsograziano.it/book).
+
+### 3. Read the full essay
+
+This roadmap is the condensed version. The long-form piece on what AI-Native Engineering actually means, why the implementer-to-orchestrator shift matters, and where this is heading, lives here:
+
+[What is AI-Native Engineering?](https://alfonsograziano.it/blog/what-is-ai-native-engineering)
+
+### Share what you built
+
+If you finished the exercises and built something, post it. Open an issue on this repo with the tag `showcase` and a short note on what you shipped and what you learned. Seeing other people's work is the fastest way for everyone to level up, and it helps shape where this roadmap goes next.
