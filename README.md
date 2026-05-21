@@ -36,6 +36,7 @@ If you want to learn more, I'm writing a book about [AI-Native Engineering](http
   - [Rules, Skills, Commands, and Custom Agents: Knowing What to Use When](#rules-skills-commands-and-custom-agents-knowing-what-to-use-when)
   - [Model Context Protocol (MCP): What It Is and Why It Matters](#model-context-protocol-mcp-what-it-is-and-why-it-matters)
   - [MCP Security: What Can Go Wrong](#mcp-security-what-can-go-wrong)
+  - [Harness Engineering: Everything Around the Model](#harness-engineering-everything-around-the-model)
 - [Day 5: Spec-Driven Development](#day-5-spec-driven-development)
   - [Why Spec-Driven Development?](#why-spec-driven-development)
   - [SDD as a Pillar of AI-Native Engineering](#sdd-as-a-pillar-of-ai-native-engineering)
@@ -1576,6 +1577,60 @@ Apply this to both the tools you give each server and the permissions you grant 
 **Resources**
 
 - [MCP Security Issues Threatening AI Infrastructure – Docker](https://www.docker.com/blog/mcp-security-issues-threatening-ai-infrastructure/)
+
+### Harness Engineering: Everything Around the Model
+
+_Why the systems wrapped around an LLM — the prompts, tools, sensors, and guardrails — matter as much as the model itself, and how to think about them as a discipline rather than a bag of tricks._
+
+#### Theory
+
+So far on Day 4 you've looked at the individual pieces that shape an agent's behavior: rules, skills, commands, custom agents, MCP servers. **Harness engineering** is the name for the discipline that ties all of these together. The harness is *everything in an AI agent except the model itself*: the system prompts, the retrieval logic, the tool definitions, the linters and tests it runs, the code reviewers it consults, the checkpoints where humans step in. Swap the model and the harness stays. Swap the harness and the same model behaves like a different product.
+
+##### Guides and sensors: a dual-control system
+
+A useful framing from Martin Fowler's article is to split the harness into two kinds of controls:
+
+- **Guides (feedforward)**: anything that steers the agent *before* it generates code. Rules, skills, AGENTS.md, plan-mode templates, examples in context, scoped tool access. Guides reduce the chance of a wrong output by shaping the input.
+- **Sensors (feedback)**: anything that lets the agent (or you) detect that the output is wrong *after* it has been generated. Linters, type checkers, tests, AI code review, runtime telemetry, human review checkpoints. Sensors close the loop so mistakes get caught and corrected instead of shipping.
+
+Most teams over-invest in one side and under-invest in the other. A rich set of rules with no automated checks produces confident-looking output that nobody verifies. A wall of tests with no upfront guidance produces correct-but-misshapen code that has to be rewritten. A mature harness has both, and the two feed into each other: each failure caught by a sensor is a signal to add or refine a guide.
+
+##### Computational vs. inferential controls
+
+Within both guides and sensors there's a second useful split:
+
+- **Computational controls** are deterministic and cheap: linters, formatters, type checkers, unit tests, schema validators. They run fast, give unambiguous results, and scale to every commit.
+- **Inferential controls** use another LLM call to reason about the output: AI code review, semantic diff analysis, plan critique. They're slower and probabilistic, but they catch the kind of issues no linter can express ("this function name doesn't match its behavior", "this is technically correct but violates our architecture").
+
+Reach for computational controls first. They're cheaper and more reliable. Use inferential controls for the layer of judgment that computational tools can't cover.
+
+##### Harness engineering as a specific form of context engineering
+
+Harness engineering is not a separate idea from context engineering: it's the engineering discipline behind it. Context engineering asks "what should be in the model's context window right now?" Harness engineering asks "what system produces, validates, and corrects that context, on every run, across the team?" The former is a per-task concern; the latter is a project-level asset that compounds over time.
+
+This is why every piece you've built on Day 4 — rules, skills, commands, custom agents, MCP servers — is harness work. The point of seeing them as a system is that you can now reason about gaps: where are the guides thin? Where are the sensors missing? Which failures keep slipping through, and which layer should catch them next time?
+
+##### The steering loop
+
+The practical output of this mindset is a *steering loop*: when the agent fails, you don't just fix the immediate output. You ask which guide or sensor would have caught it, and you add or sharpen that one. Over time, the harness absorbs the lessons of every failure, and the amount of supervision the agent needs drops. The goal isn't zero human input — it's redirecting human input to where judgment actually matters (intent, architecture, trade-offs) and away from babysitting the mechanics.
+
+**Resources**
+
+- [Harness Engineering for Coding Agents – Martin Fowler](https://martinfowler.com/articles/harness-engineering.html)
+
+#### Practice
+
+Pick a real project and audit its harness against the two-axis framework above.
+
+1. **List your current guides.** Rules files, AGENTS.md, skills, commands, custom agents, plan-mode usage, scoped tool access. What does the agent *get* before it starts working?
+
+2. **List your current sensors.** Linters, type checkers, tests (and their coverage), pre-commit hooks, CI checks, AI code review on PRs, human review checkpoints. What catches the agent when it's wrong?
+
+3. **Map a recent failure.** Pick one time the agent produced something wrong that made it into your branch (or close to it). Which guide would have prevented it? Which sensor should have caught it? Were either of them missing or too weak?
+
+4. **Add one of each.** Write one new guide (a rule, skill, or instruction) and add one new sensor (a test, a lint rule, an AI review prompt) targeting the failure mode you identified. Commit both.
+
+5. **Reflect.** Which side of your harness is weaker — guides or sensors? Which side is easier for you to extend? What would change in your workflow if every agent failure ended with a small harness improvement instead of a one-off fix?
 
 ---
 
