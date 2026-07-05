@@ -3,6 +3,8 @@
 In one week you can learn more than many engineers who haven’t upskilled. This path is your starting point. Work through the theory and practice exercises to learn the mindset and apply it from day one.
 
 If you want to learn more, I'm writing a book about [AI-Native Engineering](https://alfonsograziano.it/book)
+
+When you're ready to align your team, the free [AI-Native Engineering Canvas](https://alfonsograziano.it/aine-canvas) is a printable one-page workshop for designing your team's operating model, the context, tools, checks, and feedback loops around your agents.
 ---
 
 ## Table of Contents
@@ -202,10 +204,13 @@ Teams that start with well-scoped tasks, invest in guardrails (specs, AGENTS.md,
 **Resources**
 
 - [Building an AI-Native Engineering Team | OpenAI](https://developers.openai.com/codex/guides/build-ai-native-engineering-team/)
+- [The AI-Native Engineering Canvas](https://alfonsograziano.it/aine-canvas): a free, printable one-page workshop template for designing your team's operating model.
 
 #### Practice
 
 Choose one SDLC phase (e.g. Plan, Build, or Review). List two tasks you would delegate to an agent, two you would review, and two you would always own. Share with your team and compare.
+
+For a fuller version of this exercise, run the [AI-Native Engineering Canvas](https://alfonsograziano.it/aine-canvas) with your team: work through its eight areas together to make your delegate/review/own boundaries, context, and quality gates explicit.
 
 ### Why This Matters Now: Career and Relevance
 
